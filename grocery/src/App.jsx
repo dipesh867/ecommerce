@@ -1,14 +1,49 @@
 import React from "react";
-import Navbar from "./components/Navbar/Navbar";
 import Home from './components/Home/Home'
-import Hero from "./components/Hero/Hero";
-import Category from "./components/Category/Category";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Fruits from "./components/Fruits/Fruits";
+import Dairy from "./components/Dairy/Dairy";
+import Meat from "./components/Meat/Meat";
+import Allproducts from "./components/Allproducts/Allproducts";
+import Layout from "./components/Layout/Layout";
 
-const App=()=>{
+
+const App = () => {
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/fruits',
+          element: <Fruits />
+        },
+        {
+          path: '/dairy',
+          element: <Dairy />
+        },
+        {
+          path: '/meat',
+          element: <Meat />
+        },
+        {
+          path: '/products/all',
+          element: <Allproducts />
+        }
+      ]
+    },
+
+  ])
+
   return(
-    <div>
-   <Home/>
-    </div>
+  <>
+  <RouterProvider router={router} />
+  </> 
   )
 }
 
